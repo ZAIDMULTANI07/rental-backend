@@ -1,5 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import { DatabaseOptions } from '@squareboat/nestjs-objection';
+import path from 'path';
 
 export default registerAs(
   'db',
@@ -20,6 +21,9 @@ export default registerAs(
             charset: 'utf8',
           },
           useNullAsDefault: true,
+          migrations: {
+            directory: path.join(__dirname, '..', '..', 'database', 'migrations'),
+          },
         },
       },
     } as DatabaseOptions),

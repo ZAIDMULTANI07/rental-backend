@@ -1,29 +1,24 @@
 import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserLibConstants } from "../constant";
 import { UserRepository } from '../repositories/auth/database';
-import { UserModel } from "@app/user";
-import { LoginDto } from "../dto/auth";
+import { BaseValidator } from "@libs/boat/validator";
 import { IUser } from "@app/common/interface";
+import { CreateUserDto } from "../dto/auth";
+import { UserModel } from "@app/user";
 
 @Injectable()
 export class AuthApisService{
     constructor(
         @Inject(UserLibConstants.USER_REPOSITORY)
-        private readonly repo: UserRepository
+        private readonly repo: UserRepository,
+        // private readonly userLibService: UserLibService,
+        private readonly validator: BaseValidator,
     ){}
 
-//     async login(inputs: LoginUserDTO): Promise<IUser> {
-    
-//         const user = await this.userLibService.repo
-//           .query()
-//           .findOne({ email })
-//           .whereIn('role', [1, 2]);
-//         if (!user) throw new UnauthorizedException('User does not exists');
-//         const isMatch = await bcrypt.compare(password, user.password);
-//         if (!isMatch) {
-//           throw new UnauthorizedException('Invalid Credentials');
-//         }
-//         const token = await this.jwt.signAsync({ sub: user.id });
-//         return { ...user, token };
-//       }
+
+    // async signup(inputs: CreateUserDto, user: UserModel): Promise<IUser> {
+    //     const users = await this.repo.create(inputs)
+    //     return { ...users };
+    //   }
+
 }

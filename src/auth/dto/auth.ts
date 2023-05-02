@@ -20,3 +20,25 @@ export class LoginDto{
     @IsString()
     password: string;
 }
+
+export class CreateUserDto{
+    name : string;
+    
+    @Transform(({ value }) => {
+        return value.toString().toLowerCase();
+      })
+      @Exists({ table: 'users', column: 'email' })
+      @Matches(/^[a-zA-Z0-9.-]+@[a-zA-Z]+\.[a-z]{2,3}/, {
+        message: 'Invalid Email Id!',
+      })
+      @IsString()
+      @IsEmail({}, { message: 'Invalid Email Id!' })
+      @IsNotEmpty()
+    email: string;
+
+    @IsNotEmpty()
+    @IsString()
+    password: string;
+
+    role: string;
+}

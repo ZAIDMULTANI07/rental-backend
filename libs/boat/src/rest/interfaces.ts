@@ -1,3 +1,4 @@
+import { UserModel } from '@app/user';
 import { Request as BaseRequest } from 'express';
 import { Response as BaseResponse } from 'express';
 
@@ -10,7 +11,7 @@ export interface Request extends BaseRequest {
   /**
    * Get the current user from the request object
    */
-  user: Record<string, any>;
+  user: UserModel;
 }
 
 export interface Response extends BaseResponse {
